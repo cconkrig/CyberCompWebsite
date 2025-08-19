@@ -1,3 +1,5 @@
+# deployment.yaml
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -11,21 +13,23 @@ spec:
     metadata:
       labels: { app: cybercomp }
     spec:
+      imagePullSecrets:
+        - name: harbor-pull     # created separately (see steps below)
       containers:
       - name: web
-        image: ghcr.io/yourorg/cybercomp:latest   # update to your registry/image
+        image: artifacts.cyber-comp.cc/general-docker/cyber-comp-website:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         resources:
           requests: { cpu: "25m", memory: "32Mi" }
           limits:   { cpu: "250m", memory: "128Mi" }
         readinessProbe:
-          httpGet: { path: "/", port: 8080 }
+          httpGet: { path: "/", port: 80 }
           initialDelaySeconds: 2
           periodSeconds: 10
         livenessProbe:
-          httpGet: { path: "/", port: 8080 }
+          httpGet: { path: "/", port: 80 }
           initialDelaySeconds: 10
           periodSeconds: 20
         securityContext:
@@ -33,5 +37,17 @@ spec:
           readOnlyRootFilesystem: true
       securityContext:
         runAsNonRoot: true
-        runAsUser: 101       # nginx user in alpine image
+        runAsUser: 101
         runAsGroup: 101
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cybercomp-svc
+  labels: { app: cybercomp }
+spec:
+  selector: { app: cybercomp }
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
