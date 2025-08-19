@@ -1,0 +1,40 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http‑equiv="Content‑Security‑Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self';">
+      <title>Cyber‑Comp Technologies</title>
+      <style>
+        :root{
+          --bg1:#0f2027;  /* dark teal   */
+          --bg2:#203a43;  /* mid teal    */
+          --bg3:#2c5364;  /* deep cyan   */
+          --accent:#00ffd1; /* neon accent */
+        }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{
+          height:100vh;
+          display:flex;
+          flex-direction:column;
+          justify-content:center;
+          align-items:center;
+          background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+          color:#fff;
+          font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+          text-align:center;
+        }
+        h1{font-size:3rem;animation:fadeIn 1s ease-out;}
+        p{margin-top:1rem;font-size:1.25rem;max-width:600px;line-height:1.5;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+        footer{position:absolute;bottom:1rem;font-size:.9rem;}
+        a{color:var(--accent);text-decoration:none;}
+      </style>
+    </head>
+    <body>
+      <h1>Welcome to Cyber‑Comp&nbsp;Technologies!</h1>
+      <p>We’re thrilled you stopped by. At the moment we’re not taking on new clients, but feel free to check back soon.</p>
+      <footer>&copy; 2025 Cyber‑Comp Technologies</footer>
+    </body>
+    </html>
+
