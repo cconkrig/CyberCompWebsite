@@ -24,7 +24,7 @@ jobs:
       - name: Log in to Harbor
         uses: docker/login-action@v3
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ${{ env.REGISTRY }}/${{ env.HARBOR_PROJECT }}
           username: ${{ secrets.HARBOR_USERNAME }}
           password: ${{ secrets.HARBOR_PASSWORD }}
 
